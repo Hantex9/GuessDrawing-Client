@@ -1,0 +1,6 @@
+framework module Pods_Taboo {
+  umbrella header "Pods-Taboo-umbrella.h"
+
+  export *
+  module * { export * }
+}

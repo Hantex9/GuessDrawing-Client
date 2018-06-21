@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38CEC8F24E9E51C7CD5B1938 /* Pods_Taboo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F7A86ED310EC930B4C2475 /* Pods_Taboo.framework */; };
 		F3469EA320DC30E200727303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3469EA220DC30E200727303 /* AppDelegate.swift */; };
 		F3469EA820DC30E200727303 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3469EA620DC30E200727303 /* Main.storyboard */; };
 		F3469EAA20DC30E200727303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3469EA920DC30E200727303 /* Assets.xcassets */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5EF4CF900B613D3B91374854 /* Pods-Taboo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taboo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taboo/Pods-Taboo.release.xcconfig"; sourceTree = "<group>"; };
+		B4F7A86ED310EC930B4C2475 /* Pods_Taboo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taboo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBAEA5642B2346ECE0320728 /* Pods-Taboo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taboo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taboo/Pods-Taboo.debug.xcconfig"; sourceTree = "<group>"; };
 		F3469E9F20DC30E200727303 /* Taboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3469EA220DC30E200727303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3469EA720DC30E200727303 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38CEC8F24E9E51C7CD5B1938 /* Pods_Taboo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A79B6AC3BC74B66D37DE8D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4F7A86ED310EC930B4C2475 /* Pods_Taboo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A40F8B50DE815B2B4A5A48C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CBAEA5642B2346ECE0320728 /* Pods-Taboo.debug.xcconfig */,
+				5EF4CF900B613D3B91374854 /* Pods-Taboo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F3469E9620DC30E200727303 = {
 			isa = PBXGroup;
 			children = (
 				F3469EA120DC30E200727303 /* Taboo */,
 				F3469EA020DC30E200727303 /* Products */,
+				8A40F8B50DE815B2B4A5A48C /* Pods */,
+				2A79B6AC3BC74B66D37DE8D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,9 +111,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3469EB120DC30E200727303 /* Build configuration list for PBXNativeTarget "Taboo" */;
 			buildPhases = (
+				6DF0D6418EA42CDFE01173D8 /* [CP] Check Pods Manifest.lock */,
 				F3469E9B20DC30E200727303 /* Sources */,
 				F3469E9C20DC30E200727303 /* Frameworks */,
 				F3469E9D20DC30E200727303 /* Resources */,
+				641551B7A079B9DB0A9DEA74 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -145,6 +171,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		641551B7A079B9DB0A9DEA74 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taboo/Pods-Taboo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Taboo/Pods-Taboo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DF0D6418EA42CDFE01173D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Taboo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F3469E9B20DC30E200727303 /* Sources */ = {
@@ -294,6 +361,7 @@
 		};
 		F3469EB220DC30E200727303 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBAEA5642B2346ECE0320728 /* Pods-Taboo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,6 +380,7 @@
 		};
 		F3469EB320DC30E200727303 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EF4CF900B613D3B91374854 /* Pods-Taboo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
