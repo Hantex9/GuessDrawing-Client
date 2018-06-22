@@ -96,8 +96,6 @@ class ServerManager {
   func updateReadyUsers(completion: @escaping ([User]?) -> Void) {
     socket.on("refresh room") { (data, ack) in
       do {
-        print("UPDATE READY USER DATA")
-        print(data[0])
         let json = try JSONSerialization.data(withJSONObject: data[0], options: .prettyPrinted)
         let users = try JSONDecoder().decode([User].self, from: json)
         completion(users)
@@ -120,6 +118,27 @@ class ServerManager {
   func checkStartGame(completion: @escaping () -> Void) {
     socket.on("start game") { (data, ack) in
       completion()
+    }
+  }
+  
+  func sendDrawing(in room: Room, lastPoint: CGPoint, newPoint: CGPoint) {
+    let jsonLastPoint = try? JSONEncoder().encode(lastPoint)
+    let jsonNewPoint = try? JSONEncoder().encode(newPoint)
+    let jsonRoom = try? JSONEncoder().encode(room)
+    let json = ["lastPoint": jsonLastPoint, "newPoint": jsonNewPoint, "room": jsonRoom]
+    socket.emit("draw", json)
+  }
+  
+  func fetchDrawing(completion: @escaping (CGPoint?, CGPoint?) -> Void) {
+    socket.on("update draw") { (data, ack) in
+      do {
+        let jsonPoints = try JSONSerialization.data(withJSONObject: data[0], options: .prettyPrinted)
+        let points = try JSONDecoder().decode([CGPoint].self, from: jsonPoints)
+        completion(points[0], points[1])
+      } catch {
+        print(error.localizedDescription)
+        completion(nil, nil)
+      }
     }
   }
 }

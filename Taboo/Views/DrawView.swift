@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DrawViewDelegate {
+  func shouldDraw(lastPoint: CGPoint, newPoint: CGPoint)
+}
+
 class DrawView: UIView {
   
   var drawColor = UIColor.black    // Color for drawing
@@ -18,6 +22,8 @@ class DrawView: UIView {
   private var pointCounter: Int = 0       // Counter of ponts
   private let pointLimit: Int = 128       // Limit of points
   private var preRenderImage: UIImage!    // Pre render image
+  
+  var delegate: DrawViewDelegate?
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -31,13 +37,13 @@ class DrawView: UIView {
     initBezierPath()
   }
   
-  func initBezierPath() {
+  fileprivate func initBezierPath() {
     bezierPath = UIBezierPath()
     bezierPath.lineCapStyle = .round
     bezierPath.lineJoinStyle = .round
   }
   
-  func renderToImage() {
+  fileprivate func renderToImage() {
     
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
     if preRenderImage != nil {
@@ -64,10 +70,23 @@ class DrawView: UIView {
     let touch: AnyObject? = touches.first
     let newPoint = touch!.location(in: self)
     
+    delegate?.shouldDraw(lastPoint: lastPoint, newPoint: newPoint)
     bezierPath.move(to: lastPoint)
     bezierPath.addLine(to: newPoint)
     lastPoint = newPoint
     
+    showDrawing()
+    
+  }
+  
+  func touchesReceived(lastPoint: CGPoint, newPoint: CGPoint) {
+    bezierPath.move(to: lastPoint)
+    bezierPath.addLine(to: newPoint)
+    
+    showDrawing()
+  }
+  
+  fileprivate func showDrawing() {
     pointCounter += 1
     
     if pointCounter == pointLimit {
