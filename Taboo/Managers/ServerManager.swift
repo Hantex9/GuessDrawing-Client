@@ -129,7 +129,19 @@ class ServerManager {
     socket.emit("draw", json)
   }
   
-  func fetchDrawing(completion: @escaping (CGPoint?, CGPoint?) -> Void) {
+  func clearDraw(in room: Room) {
+    let jsonRoom = try? JSONEncoder().encode(room)
+    let json = ["room": jsonRoom]
+    socket.emit("clear draw", json)
+  }
+  
+  func onClearDraw(completion: @escaping () -> Void) {
+    socket.on("clear draw") { (data, ack) in
+      completion()
+    }
+  }
+  
+  func fetchDraw(completion: @escaping (CGPoint?, CGPoint?) -> Void) {
     socket.on("update draw") { (data, ack) in
       do {
         let jsonPoints = try JSONSerialization.data(withJSONObject: data[0], options: .prettyPrinted)
@@ -141,4 +153,5 @@ class ServerManager {
       }
     }
   }
+  
 }

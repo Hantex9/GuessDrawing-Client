@@ -100,6 +100,12 @@ class DrawView: UIView {
     }
   }
   
+  func clear() { 
+    preRenderImage = nil
+    bezierPath.removeAllPoints()
+    setNeedsDisplay()
+  }
+  
   override func draw(_ rect: CGRect) {
     super.draw(rect)
     
